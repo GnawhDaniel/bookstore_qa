@@ -21,17 +21,6 @@ class TestCategories:
             
             page.go_back()
 
-    def test_biography(self, page: Page):
-        self.template("biography", page)
-        
-    def test_fiction(self, page: Page):
-        self.template("fiction", page)
-        
-    def test_mystery(self, page: Page):
-        self.template("mystery", page)
-        
-    def test_fantasy(self, page: Page):
-        self.template("fantasy", page)
-        
-    def test_romance(self, page: Page):
-        self.template("romance", page)
+    @pytest.mark.parametrize("category", ["biography", "fiction", "mystery", "fantasy", "romance"])
+    def test_category(self, category, page: Page):
+        self.template(category, page)
