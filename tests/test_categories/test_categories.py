@@ -1,5 +1,5 @@
 import pytest
-from playwright.sync_api import Page, expect
+from playwright.sync_api import Page
 
 class TestCategories:
     def template(self, category, page: Page):
@@ -16,7 +16,8 @@ class TestCategories:
 
             # Get Category
             next_td = page.get_by_role("cell", name="Category").locator("xpath=following-sibling::td[1]")
-            # print(next_td.text_content())
+            
+            # Check if book belongs to proper category
             assert next_td.text_content().lower() == category.lower(), f"Category {next_td.text_content().lower()} does not match {category.lower()}" 
             
             page.go_back()
